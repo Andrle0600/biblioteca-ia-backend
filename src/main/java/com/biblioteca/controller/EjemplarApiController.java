@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.controller;
+package com.biblioteca.controller;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.reserva_libros.model.Ejemplar;
-import com.libros.reserva_libros.model.EstadoEjemplar;
-import com.libros.reserva_libros.model.Libro;
-import com.libros.reserva_libros.model.Ubicacion;
-import com.libros.reserva_libros.repository.UbicacionRepository;
-import com.libros.reserva_libros.service.EjemplarService;
-import com.libros.reserva_libros.service.LibroService;
+import com.biblioteca.model.Ejemplar;
+import com.biblioteca.model.EstadoEjemplar;
+import com.biblioteca.model.Libro;
+import com.biblioteca.model.Ubicacion;
+import com.biblioteca.repository.UbicacionRepository;
+import com.biblioteca.service.EjemplarService;
+import com.biblioteca.service.LibroService;
 
 @CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
 @RestController
