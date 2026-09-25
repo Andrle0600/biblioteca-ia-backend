@@ -1,10 +1,10 @@
-package com.libros.reserva_libros.repository;
+package com.biblioteca.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.libros.reserva_libros.model.Role;
+import com.biblioteca.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long>{
     

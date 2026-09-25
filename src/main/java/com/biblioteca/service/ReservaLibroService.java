@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.service;
+package com.biblioteca.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,14 +8,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.libros.reserva_libros.model.Ejemplar;
-import com.libros.reserva_libros.model.EstadoEjemplar;
-import com.libros.reserva_libros.model.EstadoReservaLibro;
-import com.libros.reserva_libros.model.Reserva;
-import com.libros.reserva_libros.model.User;
-import com.libros.reserva_libros.repository.EjemplarRepository;
-import com.libros.reserva_libros.repository.ReservaLibroRepository;
-import com.libros.reserva_libros.repository.UserRepository;
+import com.biblioteca.model.Ejemplar;
+import com.biblioteca.model.EstadoEjemplar;
+import com.biblioteca.model.EstadoReservaLibro;
+import com.biblioteca.model.Reserva;
+import com.biblioteca.model.User;
+import com.biblioteca.repository.EjemplarRepository;
+import com.biblioteca.repository.ReservaLibroRepository;
+import com.biblioteca.repository.UserRepository;
 
 @Service
 public class ReservaLibroService {

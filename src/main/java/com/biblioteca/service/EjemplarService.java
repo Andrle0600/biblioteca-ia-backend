@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.service;
+package com.biblioteca.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.libros.reserva_libros.model.Ejemplar;
-import com.libros.reserva_libros.model.EstadoEjemplar;
-import com.libros.reserva_libros.model.Libro;
-import com.libros.reserva_libros.repository.EjemplarRepository;
+import com.biblioteca.model.Ejemplar;
+import com.biblioteca.model.EstadoEjemplar;
+import com.biblioteca.model.Libro;
+import com.biblioteca.repository.EjemplarRepository;
 
 @Service
 public class EjemplarService {
