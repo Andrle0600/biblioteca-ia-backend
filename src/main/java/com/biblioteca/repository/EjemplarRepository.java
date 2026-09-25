@@ -1,12 +1,12 @@
-package com.libros.reserva_libros.repository;
+package com.biblioteca.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.libros.reserva_libros.model.Ejemplar;
-import com.libros.reserva_libros.model.EstadoEjemplar;
-import com.libros.reserva_libros.model.Libro;
+import com.biblioteca.model.Ejemplar;
+import com.biblioteca.model.EstadoEjemplar;
+import com.biblioteca.model.Libro;
 
 public interface EjemplarRepository extends JpaRepository<Ejemplar, Long> {
 

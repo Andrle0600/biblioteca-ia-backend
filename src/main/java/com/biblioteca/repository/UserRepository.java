@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.repository;
+package com.biblioteca.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.libros.reserva_libros.model.User;
+import com.biblioteca.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

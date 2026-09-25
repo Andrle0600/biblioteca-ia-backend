@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.repository;
+package com.biblioteca.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.libros.reserva_libros.model.EstadoReservaLibro;
-import com.libros.reserva_libros.model.Reserva;
+import com.biblioteca.model.EstadoReservaLibro;
+import com.biblioteca.model.Reserva;
 
 public interface ReservaLibroRepository extends JpaRepository<Reserva, Long> {
 
@@ -19,7 +19,7 @@ public interface ReservaLibroRepository extends JpaRepository<Reserva, Long> {
     SELECT r FROM Reserva r
     WHERE r.fechaEstimadaDevolucion < CURRENT_TIMESTAMP
     AND r.fechaRealDevolucion IS NULL
-    AND r.estado = com.libros.reserva_libros.model.EstadoReservaLibro.PENDIENTE
+    AND r.estado = com.biblioteca.model.EstadoReservaLibro.PENDIENTE
     """)
     List<Reserva> buscarReservasRetrasadas();
 

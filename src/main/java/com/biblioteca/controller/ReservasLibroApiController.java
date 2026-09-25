@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.controller;
+package com.biblioteca.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.reserva_libros.model.Reserva;
-import com.libros.reserva_libros.service.ReservaLibroService;
+import com.biblioteca.model.Reserva;
+import com.biblioteca.service.ReservaLibroService;
 
 @CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
 @RestController

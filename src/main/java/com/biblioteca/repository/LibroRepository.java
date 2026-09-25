@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.repository;
+package com.biblioteca.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.libros.reserva_libros.model.Libro;
+import com.biblioteca.model.Libro;
 
 public interface LibroRepository extends JpaRepository<Libro, Long> {
 

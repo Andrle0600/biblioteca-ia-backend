@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.controller;
+package com.biblioteca.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.reserva_libros.model.Ubicacion;
-import com.libros.reserva_libros.service.UbicacionService;
+import com.biblioteca.model.Ubicacion;
+import com.biblioteca.service.UbicacionService;
 
 @CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
 @RestController

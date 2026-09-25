@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.service;
+package com.biblioteca.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.libros.reserva_libros.model.Ubicacion;
-import com.libros.reserva_libros.repository.UbicacionRepository;
+import com.biblioteca.model.Ubicacion;
+import com.biblioteca.repository.UbicacionRepository;
 
 @Service
 public class UbicacionService {
