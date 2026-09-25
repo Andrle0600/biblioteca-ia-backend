@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### Spring Configuration ###
-**/src/main/resources/application.properties
+!**/src/main/resources/application.properties
 
 ### IntelliJ IDEA ###
 .idea
