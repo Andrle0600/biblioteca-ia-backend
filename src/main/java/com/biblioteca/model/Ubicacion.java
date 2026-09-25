@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.model;
+package com.biblioteca.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.libros.reserva_libros.model;
+package com.biblioteca.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
