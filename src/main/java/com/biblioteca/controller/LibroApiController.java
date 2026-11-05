@@ -22,7 +22,7 @@ import com.biblioteca.model.Libro;
 import com.biblioteca.service.EjemplarService;
 import com.biblioteca.service.LibroService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/libros")
 public class LibroApiController {

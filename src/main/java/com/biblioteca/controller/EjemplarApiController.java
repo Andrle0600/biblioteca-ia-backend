@@ -1,4 +1,5 @@
 package com.biblioteca.controller;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ import com.biblioteca.repository.UbicacionRepository;
 import com.biblioteca.service.EjemplarService;
 import com.biblioteca.service.LibroService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/ejemplares")
 public class EjemplarApiController {

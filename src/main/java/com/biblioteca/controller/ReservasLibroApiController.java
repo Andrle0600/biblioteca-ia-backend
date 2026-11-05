@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.biblioteca.model.Reserva;
 import com.biblioteca.service.ReservaLibroService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservasLibroApiController {

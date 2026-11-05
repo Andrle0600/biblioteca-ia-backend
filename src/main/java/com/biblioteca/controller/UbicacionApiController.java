@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.biblioteca.model.Ubicacion;
 import com.biblioteca.service.UbicacionService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/ubicaciones")
 public class UbicacionApiController {
