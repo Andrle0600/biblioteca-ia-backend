@@ -16,6 +16,11 @@ target/
 ### Spring Configuration ###
 !**/src/main/resources/application.properties
 
+### Variables de Entorno (credenciales) ###
+.env
+*.env
+!.env.example
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
