@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,12 +47,14 @@ public class LibroApiController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Libro> crearLibro(@RequestBody Libro libro) {
         Libro libroGuardado = libroService.guardarLibro(libro);
         return ResponseEntity.status(HttpStatus.CREATED).body(libroGuardado);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Libro> actualizarLibro(@PathVariable Long id, @RequestBody Libro libro) {
         if (!libro.getId().equals(id)) {
             return ResponseEntity.badRequest().build();
@@ -61,6 +64,7 @@ public class LibroApiController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminarLibro(@PathVariable Long id) {
         libroService.eliminarLibro(id);
         return ResponseEntity.noContent().build();

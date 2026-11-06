@@ -30,9 +30,9 @@ public class AuthApiController {
             AuthResponse response = authService.login(loginRequest);
             return ResponseEntity.ok(response);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error:"+ e.getMessage()+"\n Credenciales inválidas");
         } catch (DisabledException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Error:"+ e.getMessage()+"\n Cuenta deshabilitada");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error en inicio de sesión: " + e.getMessage());
         }

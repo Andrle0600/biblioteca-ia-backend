@@ -25,7 +25,17 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con username/email: " + username));
 
         List<SimpleGrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .flatMap(role -> {
+                    String name = role.getName();
+                    if (name == null || name.isBlank()) return java.util.stream.Stream.empty();
+                    String withPrefix = name.startsWith("ROLE_") ? name : "ROLE_" + name;
+                    String withoutPrefix = name.startsWith("ROLE_") ? name.substring(5) : name;
+                    return java.util.stream.Stream.of(
+                            new SimpleGrantedAuthority(withPrefix),
+                            new SimpleGrantedAuthority(withoutPrefix)
+                    );
+                })
+                .distinct()
                 .collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(
