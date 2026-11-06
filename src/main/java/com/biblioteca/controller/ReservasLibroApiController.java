@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.biblioteca.model.Reserva;
 import com.biblioteca.service.ReservaLibroService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservasLibroApiController {
@@ -30,18 +31,21 @@ public class ReservasLibroApiController {
 
     // Obtener todas las reservas
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     public ResponseEntity<List<Reserva>> obtenerReservas() {
         return ResponseEntity.ok(reservaService.listarReservas());
     }
 
     // Obtener reservas pendientes
     @GetMapping("/pendientes")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     public ResponseEntity<List<Reserva>> obtenerReservasPendientes() {
         return ResponseEntity.ok(reservaService.listarReservasPendientes());
     }
 
     //buscar por código
     @GetMapping("/pendientes/{codigoEjemplar}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     public ResponseEntity<Reserva> obtenerReservaPendientePorCodigoEjemplar(@PathVariable String codigoEjemplar) {
         return reservaService.pendientesPorCodigo(codigoEjemplar)
                 .map(ResponseEntity::ok)
@@ -50,18 +54,21 @@ public class ReservasLibroApiController {
 
     // Obtener reservas atrasadas
     @GetMapping("/atrasadas")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     public ResponseEntity<List<Reserva>> obtenerReservasRetrasadas() {
         return ResponseEntity.ok(reservaService.listarReservasRetrasadas());
     }
 
     // Obtener las 10 más recientes (para dashboard)
     @GetMapping("/recientes")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     public ResponseEntity<List<Reserva>> obtenerReservasRecientes() {
         return ResponseEntity.ok(reservaService.listarReservasRecientes());
     }
 
     // Crear nueva reserva
     @PostMapping("/crear")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Reserva> crearReserva(
             @RequestParam Long usuarioId,
             @RequestParam Long ejemplarId,
@@ -75,8 +82,9 @@ public class ReservasLibroApiController {
         }
     }
 
-    // Actualizar una reserva existente
+    // Actualizar una reserva existente (Devolución)
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('BIBLIOTECARIO', 'ADMIN')")
     public ResponseEntity<Reserva> actualizarReserva(@PathVariable Long id, @RequestBody Reserva reservaActualizada) {
         if (!id.equals(reservaActualizada.getId())) {
             return ResponseEntity.badRequest().build();

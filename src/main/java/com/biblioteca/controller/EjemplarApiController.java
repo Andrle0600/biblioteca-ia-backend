@@ -1,10 +1,12 @@
 package com.biblioteca.controller;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ import com.biblioteca.repository.UbicacionRepository;
 import com.biblioteca.service.EjemplarService;
 import com.biblioteca.service.LibroService;
 
-@CrossOrigin(origins = "https://andrle0600.github.io", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/ejemplares")
 public class EjemplarApiController {
@@ -50,6 +52,7 @@ public class EjemplarApiController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Ejemplar> crearEjemplar(@RequestBody Ejemplar ejemplar) {
         // Verificar que el libro asociado existe
         if (ejemplar.getLibro() != null && ejemplar.getLibro().getId() != null) {
@@ -74,6 +77,7 @@ public class EjemplarApiController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Ejemplar> actualizarEjemplar(@PathVariable Long id, @RequestBody Ejemplar ejemplar) {
         if (ejemplar.getId() == null || !ejemplar.getId().equals(id)) {
             return ResponseEntity.badRequest().build();
@@ -113,6 +117,7 @@ public class EjemplarApiController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminarEjemplar(@PathVariable Long id) {
         ejemplarService.eliminarEjemplar(id);
         return ResponseEntity.noContent().build();
