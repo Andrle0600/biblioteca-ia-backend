@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.biblioteca.persistencia.entity.EstadoReservaLibro;
 import com.biblioteca.persistencia.entity.Reserva;
+import com.biblioteca.persistencia.entity.User;
 
 public interface ReservaLibroRepository extends JpaRepository<Reserva, Long> {
 
     List<Reserva> findByEstado(EstadoReservaLibro estado);
+
+    List<Reserva> findByUser(User user);
 
     List<Reserva> findTop10ByOrderByFechaReservaDesc();
 
