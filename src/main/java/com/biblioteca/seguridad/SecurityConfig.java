@@ -99,6 +99,7 @@ public class SecurityConfig {
             "http://127.0.0.1:4200",
             "http://localhost:8080",
             "https://andrle0600.github.io"
+            "http://proyecto-ate-frontend-2026-010429757104-us-east-2-an.s3-website.us-east-2.amazonaws.com"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
