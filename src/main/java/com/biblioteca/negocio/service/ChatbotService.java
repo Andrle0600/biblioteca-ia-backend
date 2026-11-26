@@ -56,6 +56,9 @@ public class ChatbotService {
     @Autowired
     private GeminiService geminiService;
 
+    @Autowired
+    private LlmChatService llmChatService;
+
     /** Peso del mensaje actual frente al perfil del usuario al combinar vectores (0 a 1). */
     @Value("${chatbot.peso.mensaje:0.6}")
     private double pesoMensaje;
@@ -110,23 +113,23 @@ public class ChatbotService {
         // Instrucción de sistema con el catálogo de candidatos y el historial de lecturas
         String sistema = construirInstruccionSistema(candidatos, titulosLeidos);
 
-        // Historial para Gemini (roles user/model) + mensaje nuevo.
+        // Historial para el LLM (roles user/model) + mensaje nuevo.
         // Solo se incluyen intercambios completos (usuario -> asistente): los mensajes
         // de usuario sin respuesta del asistente se omiten para no confundir al modelo
         // con roles consecutivos iguales.
-        List<GeminiService.MensajeChat> historialGemini = new ArrayList<>();
+        List<LlmChatService.MensajeChat> historialChat = new ArrayList<>();
         for (int i = 0; i < recientes.size(); i++) {
             ChatInteraccion actual = recientes.get(i);
             if (ChatInteraccion.ROL_USUARIO.equals(actual.getRolMensaje())
                     && i + 1 < recientes.size()
                     && ChatInteraccion.ROL_ASISTENTE.equals(recientes.get(i + 1).getRolMensaje())) {
-                historialGemini.add(new GeminiService.MensajeChat("user", actual.getContenido()));
-                historialGemini.add(new GeminiService.MensajeChat("model", recientes.get(i + 1).getContenido()));
+                historialChat.add(new LlmChatService.MensajeChat("user", actual.getContenido()));
+                historialChat.add(new LlmChatService.MensajeChat("model", recientes.get(i + 1).getContenido()));
             }
         }
-        historialGemini.add(new GeminiService.MensajeChat("user", mensaje));
+        historialChat.add(new LlmChatService.MensajeChat("user", mensaje));
 
-        String respuesta = geminiService.generarRespuestaChat(sistema, historialGemini);
+        String respuesta = llmChatService.generarRespuestaChat(sistema, historialChat);
 
         // Se guarda la respuesta del asistente
         chatRepository.save(new ChatInteraccion(usuario, ChatInteraccion.ROL_ASISTENTE, respuesta));

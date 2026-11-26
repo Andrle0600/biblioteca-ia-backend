@@ -31,6 +31,10 @@ public class GeminiService {
     @Value("${gemini.chat.model:gemini-2.5-flash}")
     private String modeloChat;
 
+    /** Modelo de respaldo si el principal esta saturado (503). Vacio = sin respaldo. */
+    @Value("${gemini.chat.fallback-model:gemini-3.1-flash-lite}")
+    private String modeloChatAlternativo;
+
     @Value("${gemini.embedding.model:gemini-embedding-001}")
     private String modeloEmbedding;
 
@@ -110,7 +114,17 @@ public class GeminiService {
         }
         body.put("generationConfig", generationConfig);
 
-        JsonNode respuesta = postConReintentos("/models/" + modeloChat + ":generateContent", body, "chat");
+        JsonNode respuesta;
+        try {
+            respuesta = postConReintentos("/models/" + modeloChat + ":generateContent", body, "chat");
+        } catch (IllegalStateException e) {
+            // Si el modelo principal esta saturado (503 alta demanda), se intenta con el respaldo
+            if (modeloChatAlternativo == null || modeloChatAlternativo.isBlank()
+                    || !e.getMessage().contains("503")) {
+                throw e;
+            }
+            respuesta = postConReintentos("/models/" + modeloChatAlternativo + ":generateContent", body, "chat");
+        }
 
         if (respuesta == null || respuesta.path("candidates").isMissingNode() || respuesta.path("candidates").isEmpty()) {
             String motivo = respuesta == null
