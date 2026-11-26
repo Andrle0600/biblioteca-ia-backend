@@ -26,7 +26,7 @@ jobs:
         run: mv target/*.jar target/app.jar
 
       - name: Enviar JAR a EC2 por SCP
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
@@ -36,7 +36,7 @@ jobs:
           strip_components: 1
 
       - name: Reiniciar servicio Spring Boot en EC2
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
