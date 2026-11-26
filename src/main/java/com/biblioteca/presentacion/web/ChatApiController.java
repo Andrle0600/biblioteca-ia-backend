@@ -22,7 +22,7 @@ import com.biblioteca.persistencia.repository.UserRepository;
 import com.biblioteca.presentacion.dto.ChatRequest;
 import com.biblioteca.presentacion.dto.ChatResponse;
 
-@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://andrle0600.github.io","http://proyecto-ate-frontend-2026-010429757104-us-east-2-an.s3-website.us-east-2.amazonaws.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/chat")
 public class ChatApiController {
