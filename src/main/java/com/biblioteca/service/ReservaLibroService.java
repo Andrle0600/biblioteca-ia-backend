@@ -57,7 +57,7 @@ public class ReservaLibroService {
 }
 
     public List<Reserva> listarReservasPendientes() {
-        return reservaRepository.findByFechaRealDevolucionIsNull();
+        return reservaRepository.findByfechaRealDevolucionIsNull();
     }
 
     public List<Reserva> listarReservasRetrasadas() {

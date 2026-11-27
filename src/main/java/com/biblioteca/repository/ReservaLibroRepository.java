@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.biblioteca.model.EstadoReservaLibro;
 import com.biblioteca.model.Reserva;
+import java.time.LocalDateTime;
+
 
 public interface ReservaLibroRepository extends JpaRepository<Reserva, Long> {
 
@@ -17,13 +19,13 @@ public interface ReservaLibroRepository extends JpaRepository<Reserva, Long> {
 
     @Query("""
     SELECT r FROM Reserva r
-    WHERE r.fechaEstimadaDevolucion < CURRENT_TIMESTAMP
-    AND r.fechaRealDevolucion IS NULL
+    WHERE r.fecha_estimada_devolucion < CURRENT_TIMESTAMP
+    AND r.fecha_real_devolucion IS NULL
     AND r.estado = com.biblioteca.model.EstadoReservaLibro.PENDIENTE
     """)
     List<Reserva> buscarReservasRetrasadas();
 
-    List<Reserva> findByFechaRealDevolucionIsNull();
+    List<Reserva> findByfechaRealDevolucionIsNull();
 
     Optional<Reserva> findByEjemplarCodigoEjemplarAndEstadoIn(String codigo, List<EstadoReservaLibro> estados);
 

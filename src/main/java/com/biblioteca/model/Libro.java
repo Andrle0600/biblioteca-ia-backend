@@ -28,11 +28,11 @@ public class Libro {
     private String editorial;
     private String genero;
     private String descripcion;
-    private String imagenUrl;
+    private String imagen_url;
     @Column(unique = true)
     private String slug;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaPublicacion;
+    private LocalDate fecha_publicacion;
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ejemplar> ejemplares = new ArrayList<>();
 
@@ -88,11 +88,11 @@ public class Libro {
     }
 
     public LocalDate getFechaPublicacion() {
-        return fechaPublicacion;
+        return fecha_publicacion;
     }
 
-    public void setFechaPublicacion(LocalDate fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
+    public void setFechaPublicacion(LocalDate fecha_publicacion) {
+        this.fecha_publicacion = fecha_publicacion;
     }
 
     public List<Ejemplar> getEjemplares() {
@@ -120,10 +120,10 @@ public class Libro {
     }
 
     public String getImagenUrl() {
-        return imagenUrl;
+        return imagen_url;
     }
 
     public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl;
+        this.imagen_url = imagenUrl;
     }
 }

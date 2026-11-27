@@ -23,7 +23,7 @@ public class Ejemplar {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String codigoEjemplar;
+    private String codigo_ejemplar;
     @Enumerated(EnumType.STRING)
     private EstadoEjemplar estado=EstadoEjemplar.DISPONIBLE;
     @ManyToOne
@@ -59,11 +59,11 @@ public class Ejemplar {
     }
 
     public String getCodigoEjemplar() {
-        return codigoEjemplar;
+        return codigo_ejemplar;
     }
 
-    public void setCodigoEjemplar(String codigoEjemplar) {
-        this.codigoEjemplar = codigoEjemplar;
+    public void setCodigoEjemplar(String codigo_ejemplar) {
+        this.codigo_ejemplar = codigo_ejemplar;
     }
 
     public Ubicacion getUbicacion() {

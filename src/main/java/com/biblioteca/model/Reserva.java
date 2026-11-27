@@ -35,13 +35,13 @@ public class Reserva {
     private Ejemplar ejemplar;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaReserva;
+    private LocalDateTime fecha_reserva;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaEstimadaDevolucion = null;
+    private LocalDateTime fecha_estimada_devolucion = null;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaRealDevolucion = null;
+    private LocalDateTime fecha_real_devolucion = null;
 
     @Enumerated(EnumType.STRING)
     private EstadoReservaLibro estado = EstadoReservaLibro.PENDIENTE;
@@ -74,27 +74,27 @@ public class Reserva {
     }
 
     public LocalDateTime getFechaReserva() {
-        return fechaReserva;
+        return fecha_reserva;
     }
 
-    public void setFechaReserva(LocalDateTime fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFechaReserva(LocalDateTime fecha_reserva) {
+        this.fecha_reserva = fecha_reserva;
     }
 
     public LocalDateTime getFechaEstimadaDevolucion() {
-        return fechaEstimadaDevolucion;
+        return fecha_estimada_devolucion;
     }
 
-    public void setFechaEstimadaDevolucion(LocalDateTime fechaEstimadaDevolucion) {
-        this.fechaEstimadaDevolucion = fechaEstimadaDevolucion;
+    public void setFechaEstimadaDevolucion(LocalDateTime fecha_estimada_devolucion) {
+        this.fecha_estimada_devolucion = fecha_estimada_devolucion;
     }
 
     public LocalDateTime getFechaRealDevolucion() {
-        return fechaRealDevolucion;
+        return fecha_real_devolucion;
     }
 
-    public void setFechaRealDevolucion(LocalDateTime fechaRealDevolucion) {
-        this.fechaRealDevolucion = fechaRealDevolucion;
+    public void setFechaRealDevolucion(LocalDateTime fecha_real_devolucion) {
+        this.fecha_real_devolucion = fecha_real_devolucion;
     }
 
     public EstadoReservaLibro getEstado() {
