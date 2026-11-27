@@ -1,0 +1,108 @@
+package com.biblioteca.persistencia.entity;
+
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "reserva")
+public class Reserva {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"password", "enabled", "roles", "reservas"})
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "ejemplar_id")
+    @JsonIgnoreProperties({"reservas"}) 
+    private Ejemplar ejemplar;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime fecha_reserva;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime fecha_estimada_devolucion = null;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime fecha_real_devolucion = null;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoReservaLibro estado = EstadoReservaLibro.PENDIENTE;
+
+    public Reserva() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Ejemplar getEjemplar() {
+        return ejemplar;
+    }
+
+    public void setEjemplar(Ejemplar ejemplar) {
+        this.ejemplar = ejemplar;
+    }
+
+    public LocalDateTime getFechaReserva() {
+        return fecha_reserva;
+    }
+
+    public void setFechaReserva(LocalDateTime fecha_reserva) {
+        this.fecha_reserva = fecha_reserva;
+    }
+
+    public LocalDateTime getFechaEstimadaDevolucion() {
+        return fecha_estimada_devolucion;
+    }
+
+    public void setFechaEstimadaDevolucion(LocalDateTime fecha_estimada_devolucion) {
+        this.fecha_estimada_devolucion = fecha_estimada_devolucion;
+    }
+
+    public LocalDateTime getFechaRealDevolucion() {
+        return fecha_real_devolucion;
+    }
+
+    public void setFechaRealDevolucion(LocalDateTime fecha_real_devolucion) {
+        this.fecha_real_devolucion = fecha_real_devolucion;
+    }
+
+    public EstadoReservaLibro getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReservaLibro estado) {
+        this.estado = estado;
+    }
+
+}

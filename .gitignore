@@ -18,6 +18,7 @@ target/
 
 ### Variables de Entorno (credenciales) ###
 .env
+.env.example
 *.env
 !.env.example
 
@@ -39,3 +40,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Logs ###
+*.log
+.metals/
